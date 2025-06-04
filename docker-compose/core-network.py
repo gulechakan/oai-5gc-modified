@@ -42,6 +42,7 @@ BASIC_VPP_W_NRF = 'docker-compose-basic-vpp-nrf.yaml'
 BASIC_VPP_W_NRF_REDIRECT = 'docker-compose-basic-vpp-pcf-redirection.yaml'
 BASIC_VPP_W_NRF_STEERING = 'docker-compose-basic-vpp-pcf-steering.yaml'
 BASIC_EBPF_W_NRF = 'docker-compose-basic-nrf-ebpf.yaml'
+BASIC_SLICE_W_NRF = '' ##!< TODO
 
 COMPOSE_CONF_MAP = {
     'docker-compose-mini-nrf.yaml': 'conf/mini_nrf_config.yaml',
@@ -68,7 +69,8 @@ def _parse_args() -> argparse.Namespace:
         python3 core-network.py --type start-mini --scenario 2
         python3 core-network.py --type start-basic --scenario 2
         python3 core-network.py --type start-vpp-redirection
-        python3 core-network.py --type start-vpp-steering'''
+        python3 core-network.py --type start-vpp-steering
+        python3 core-network.py --type start-basic-slice'''
 
     parser = argparse.ArgumentParser(description='OAI 5G CORE NETWORK DEPLOY',
                                     epilog=example_text,
@@ -79,8 +81,8 @@ def _parse_args() -> argparse.Namespace:
         '--type', '-t',
         action='store',
         required=True,
-        choices=['start-mini', 'start-basic', 'start-basic-vpp', 'start-basic-ebpf','start-vpp-redirection', 'start-vpp-steering',\
-                 'stop-vpp-redirection', 'stop-vpp-steering','stop-mini', 'stop-basic', 'stop-basic-vpp', 'stop-basic-ebpf'],
+        choices=['start-mini', 'start-basic', 'start-basic-vpp', 'start-basic-ebpf','start-vpp-redirection', 'start-vpp-steering', 'start-basic-slice'\
+                 'stop-vpp-redirection', 'stop-vpp-steering','stop-mini', 'stop-basic', 'stop-basic-vpp', 'stop-basic-ebpf', 'stop-basic-slice'],
         help='Functional type of 5g core network',
     )
     # Deployment scenario with NRF/ without NRF
@@ -478,6 +480,18 @@ if __name__ == '__main__':
         elif args.scenario == '2':
             logging.error('Basic deployments without NRF are no longer supported')
             sys.exit(-1)
+
+    ##!< New scenario is added for slicing purposes
+    elif args.type == 'start-basic-slice':
+        # Basic function with NRF and slices
+        if args.scenario == '1':
+            deploy(BASIC_SLICE_W_NRF)
+        # Basic function without NRF
+        elif args.scenario == '2':
+            logging.error('Basic deployments without NRF are no longer supported')
+            sys.exit(-1)
+
+
     elif args.type == 'stop-mini':
         if args.scenario == '2':
             undeploy(MINI_NO_NRF)
@@ -496,3 +510,8 @@ if __name__ == '__main__':
     elif args.type == 'stop-basic-ebpf':
         if args.scenario == '1':
             undeploy(BASIC_EBPF_W_NRF)
+    
+     ##!< New undeployment scenario is added for slicing purposes
+    elif args.type == 'stop-basic-slice':
+        if args.scenario == '1':
+            undeploy(BASIC_SLICE_W_NRF)
