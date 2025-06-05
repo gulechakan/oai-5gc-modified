@@ -42,7 +42,7 @@ BASIC_VPP_W_NRF = 'docker-compose-basic-vpp-nrf.yaml'
 BASIC_VPP_W_NRF_REDIRECT = 'docker-compose-basic-vpp-pcf-redirection.yaml'
 BASIC_VPP_W_NRF_STEERING = 'docker-compose-basic-vpp-pcf-steering.yaml'
 BASIC_EBPF_W_NRF = 'docker-compose-basic-nrf-ebpf.yaml'
-BASIC_SLICE_W_NRF = '' ##!< TODO
+BASIC_SLICE_W_NRF = 'docker-compose-basic-slice-nrf.yaml' ##!< Docker Compose file is added
 
 COMPOSE_CONF_MAP = {
     'docker-compose-mini-nrf.yaml': 'conf/mini_nrf_config.yaml',
