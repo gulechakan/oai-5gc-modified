@@ -81,7 +81,7 @@ def _parse_args() -> argparse.Namespace:
         '--type', '-t',
         action='store',
         required=True,
-        choices=['start-mini', 'start-basic', 'start-basic-vpp', 'start-basic-ebpf','start-vpp-redirection', 'start-vpp-steering', 'start-basic-slice'\
+        choices=['start-mini', 'start-basic', 'start-basic-vpp', 'start-basic-ebpf','start-vpp-redirection', 'start-vpp-steering', 'start-basic-slice', \
                  'stop-vpp-redirection', 'stop-vpp-steering','stop-mini', 'stop-basic', 'stop-basic-vpp', 'stop-basic-ebpf', 'stop-basic-slice'],
         help='Functional type of 5g core network',
     )
