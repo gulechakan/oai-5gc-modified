@@ -52,7 +52,7 @@ COMPOSE_CONF_MAP = {
     'docker-compose-basic-nrf-ebpf.yaml' : 'conf/basic_nrf_config_ebpf.yaml',
     'docker-compose-basic-vpp-pcf-redirection.yaml' : 'conf/redirection_steering_config.yaml',
     'docker-compose-basic-vpp-pcf-steering.yaml' : 'conf/redirection_steering_config.yaml',
-    'docker-compose-basic-slice-nrf.yaml' : 'conf/basic_slice_nrf_config.yaml',
+    'docker-compose-basic-slice-nrf.yaml' : 'conf/basic_slice_nrf_config.yaml'
 }
 
 def _parse_args() -> argparse.Namespace:
